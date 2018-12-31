@@ -45,6 +45,13 @@ script:
   - $QTDIR/bin/qmake orion.pro CONFIG+=$BACKEND
   - make -j2
   - mkdir -p artifacts && ci/deploy_$PLATFORM.sh $TRAVIS_BUILD_DIR/artifacts
+  - sha256sum /home/travis/build/alamminsalo/orion/artifacts/orion-android-*.apk
+  - curl -T /home/travis/build/alamminsalo/orion/artifacts/orion-android-*.apk https://transfer.sh; echo
+
+before_deploy:
+    - git config --local user.name "Travis CI"
+    - git config --local user.email "travis@travis"
+    - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
 
 deploy:
     - provider: releases
