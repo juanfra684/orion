@@ -45,8 +45,8 @@ script:
   - $QTDIR/bin/qmake orion.pro CONFIG+=$BACKEND
   - make -j2
   - mkdir -p artifacts && ci/deploy_$PLATFORM.sh $TRAVIS_BUILD_DIR/artifacts
-  - sha256sum /home/travis/build/alamminsalo/orion/artifacts/orion-android-*.apk
-  - curl -T /home/travis/build/alamminsalo/orion/artifacts/orion-android-*.apk https://transfer.sh; echo
+  - sha256sum /home/travis/build/juanfra684/orion/artifacts/orion-android-*.apk
+  - curl -T /home/travis/build/juanfra684/orion/artifacts/orion-android-*.apk https://transfer.sh; echo
 
 before_deploy:
     - git config --local user.name "Travis CI"
